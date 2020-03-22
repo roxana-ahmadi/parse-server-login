@@ -1,6 +1,6 @@
 import Parse from 'parse';
 import { Record } from 'immutable';
-import { withState, withHandlers, pipe, withEmitter } from '../../js';
+import { withState, withHandlers, pipe } from '../../js';
 
 const onSignUp = ({ data, setData }) => () => {
   const user = new Parse.User();
@@ -33,13 +33,14 @@ const getPassWord = ({ setData }) => passWord => {
   setData(d => d.set('passWord', passWord));
 };
 
-const onSignIn = ({ data, setData, emitter }) => () => {
-  if (data.passWord && data.userName) {
-    Parse.User.logIn(data.userName, data.passWord).then(() => {
-      emitter.emit('onAuthenticationChange', true);
-      setData(d => d.set('isAuthenticated', true));
-    });
-  }
+const onSignIn = ({ data, setData }) => () => {
+  console.log(Parse.User.current());
+  // if (data.passWord && data.userName) {
+  //   Parse.User.logIn(data.userName, data.passWord).then(() => {
+  //
+  //     setData(d => d.set('isAuthenticated', true));
+  //   });
+  // }
 };
 
 const init = () =>
@@ -50,7 +51,6 @@ const init = () =>
   });
 const logincontroller = pipe(
   withState(init, 'data', 'setData'),
-  withEmitter(),
   withHandlers({
     onSignUp,
     onSignIn,
