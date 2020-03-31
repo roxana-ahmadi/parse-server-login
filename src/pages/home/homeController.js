@@ -43,11 +43,18 @@ const PrivateRoute = () => ({ component: Component, ...rest }) => (
   />
 );
 
-const onLogOut = () => () => {
-  Parse.User.logOut();
+const onLogOut = ({ setData }) => () => {
+  console.log('logout');
+  Parse.User.logOut().then(() => {
+    console.log('logout 2');
+    setData(d => d.set('authenticated', false));
+  });
 };
 
-const init = () => Record({});
+const init = () =>
+  Record({
+    authenticated: Parse.User.current(),
+  });
 
 const homeController = pipe(
   withState(init, 'data', 'setData'),

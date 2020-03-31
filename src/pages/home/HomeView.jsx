@@ -1,4 +1,5 @@
 import React from 'react';
+import Parse from 'parse';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import { Layout, Menu } from 'antd';
 import {
@@ -14,6 +15,8 @@ const HomeView = () => {
   const { getWindowDimensions, PrivateRoute, onLogOut } = homeController();
   const { Header, Content, Footer, Sider } = Layout;
   const { height, width } = getWindowDimensions();
+  console.log('home view');
+  console.log(Parse.User.current());
 
   return (
     <Router>
