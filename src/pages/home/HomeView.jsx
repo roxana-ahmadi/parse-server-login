@@ -15,9 +15,6 @@ const HomeView = () => {
   const { getWindowDimensions, PrivateRoute, onLogOut } = homeController();
   const { Header, Content, Footer, Sider } = Layout;
   const { height, width } = getWindowDimensions();
-  console.log('home view');
-  console.log(Parse.User.current());
-
   return (
     <Router>
       <Layout style={{ height: '100%', minHeight: '100%' }}>

@@ -71,7 +71,6 @@ const LogInView = () => {
 
   return (
     <div style={{ margin: '10vw' }}>
-      <div>{Parse.User.current() && <Redirect to="/user" />}</div>
       <Form
         hideRequiredMark={false}
         initialValues={{

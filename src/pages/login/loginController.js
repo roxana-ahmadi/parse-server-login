@@ -1,6 +1,10 @@
 import Parse from 'parse';
 import { Record } from 'immutable';
-import { withState, withHandlers, pipe } from '../../js';
+import { withState, withHandlers, pipe, withLifeCycle } from '../../js';
+
+const onCreate = () => {
+  Parse.User.current() && window.history.pushState(null, null, 'user');
+};
 
 const onSignUp = ({ data, setData }) => () => {
   console.log(data);
@@ -85,6 +89,7 @@ const loginController = pipe(
     setTextFieldsValue,
     setRole,
   }),
+  withLifeCycle({ onCreate }),
 );
 
 export default loginController;

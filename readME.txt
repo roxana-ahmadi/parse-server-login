@@ -6,3 +6,4 @@ in this project i have implemented :
 5. login paging
 6. antd layout
 7. antd modals & how to get fuckin modals width
+9. history
