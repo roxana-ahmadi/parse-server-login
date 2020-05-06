@@ -9,3 +9,4 @@ export * from './pipe';
 export * from './polyfill';
 export * from './promise';
 export * from './config';
+export * from './utils';

@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import { Route, Redirect } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import Parse from 'parse';
 import { Record } from 'immutable';
 import { withState, pipe, withHandlers } from '../../js';
@@ -34,33 +33,18 @@ const getWindowDimensions = () => () => {
   return { height, width };
 };
 
-const PrivateRoute = () => ({ component: Component, ...rest }) => (
-  <Route
-    {...rest}
-    render={props =>
-      Parse.User.current() ? <Component {...props} /> : <Redirect to="/login" />
-    }
-  />
-);
-
-const onLogOut = ({ setData }) => () => {
-  console.log('logout');
+const onLogOut = () => history => {
   Parse.User.logOut().then(() => {
-    console.log('logout 2');
-    setData(d => d.set('authenticated', false));
+    history.push('/');
   });
 };
 
-const init = () =>
-  Record({
-    authenticated: Parse.User.current(),
-  });
+const init = () => Record({});
 
 const homeController = pipe(
   withState(init, 'data', 'setData'),
   withHandlers({
     getWindowDimensions,
-    PrivateRoute,
     onLogOut,
   }),
 );

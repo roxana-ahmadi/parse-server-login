@@ -1,10 +1,10 @@
 import React from 'react';
-import { Form, Input, Button, Checkbox, Modal, Col, Row, Select } from 'antd';
-import { Redirect } from 'react-router-dom';
-import Parse from 'parse';
+import { useHistory } from 'react-router-dom';
+import { Form, Input, Button, Checkbox, Modal, Select } from 'antd';
 import loginController from './loginController';
 
 const LogInView = () => {
+  const history = useHistory();
   const {
     onSignIn,
     onSignUp,
@@ -122,7 +122,11 @@ const LogInView = () => {
         </Form.Item>
 
         <Form.Item {...signInTailLayout}>
-          <Button type="primary" htmlType="submit" onClick={() => onSignIn()}>
+          <Button
+            type="primary"
+            htmlType="submit"
+            onClick={() => onSignIn(history)}
+          >
             LogIn
           </Button>
           <Button onClick={() => showSignUpForm()}>create</Button>
@@ -265,6 +269,7 @@ const LogInView = () => {
               ({ getFieldValue }) => ({
                 validator(rule, value) {
                   if (!value || getFieldValue('password') === value) {
+                    setTextFieldsValue('passWord', value);
                     return Promise.resolve();
                   }
                   return Promise.reject(

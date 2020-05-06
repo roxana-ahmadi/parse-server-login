@@ -6,7 +6,6 @@
       "type": "chrome",
       "request": "launch",
       "url": "http://localhost:3000",
-      "runtimeExecutable": "/snap/bin/chromium",
       "webRoot": "${workspaceFolder}",
       "userDataDir": true
     }

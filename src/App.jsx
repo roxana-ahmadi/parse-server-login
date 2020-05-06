@@ -1,6 +1,6 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
-import { LogInView, UserView, HomeView } from './pages';
+import { HomeView } from './pages';
+import MenuView from './widgets/menu/MenuView';
 
 const App = () => {
   return <HomeView />;

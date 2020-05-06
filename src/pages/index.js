@@ -9,3 +9,5 @@ export { default as LogInView } from './login/LogInView';
 export { default as UserView } from './user/UserView';
 export { default as HomeView } from './home/HomeView';
 export { default as GalleryView } from './gallery/GalleryView';
+export { default as LawyerPanelView } from './lawyer-panel/LawyerPanelView';
+export { default as UserPanelView } from './user-panel/UserPanelView';
